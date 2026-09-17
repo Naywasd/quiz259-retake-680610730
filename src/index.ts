@@ -3,6 +3,10 @@ import express, { type Request, type Response } from "express";
 // import middlewares
 import morgan from "morgan";
 
+import myInfo from "./routes/MyInfo"
+import usersRoutes from "./routes/usersRoutes";
+import itemsRoutes from "./routes/itemsRoutes";
+
 const app = express();
 const port = 3000;
 
@@ -24,6 +28,10 @@ app.get("/me", (req: Request, res: Response) => {
     message: "Quiz #2 - API service",
   });
 });
+
+app.use("/student", myInfo);
+app.use("/api/v730", usersRoutes);
+app.use("/api/v730/basket", itemsRoutes);
 
 app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`);
